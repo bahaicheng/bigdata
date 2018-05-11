@@ -1,9 +1,8 @@
-package org.apache.org.apache.sql
+package org.apache.spark.sql
 
 import java.util.Properties
 
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.SparkSession
 
 object SparkSqlDemo {
 

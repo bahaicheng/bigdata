@@ -1,5 +1,4 @@
-package org.apache.structuredstreaming
-
+package org.apache.spark.structuredstreaming
 
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf

@@ -1,4 +1,4 @@
-package org.apache.org.apache.sql
+package org.apache.spark.sql
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{Dataset, SparkSession}

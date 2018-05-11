@@ -1,3 +1,5 @@
+package com.bahc.utils;
+
 import java.sql.*;
 
 public class DbUtils {

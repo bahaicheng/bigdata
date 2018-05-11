@@ -1,4 +1,4 @@
-package org.apache.structuredstreaming
+package org.apache.spark.structuredstreaming
 
 import org.apache.spark.sql.streaming.DataStreamWriter
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}

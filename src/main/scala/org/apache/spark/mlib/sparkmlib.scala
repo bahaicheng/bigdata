@@ -1,4 +1,4 @@
-package org.apache.mlib
+package org.apache.spark.mlib
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkConf

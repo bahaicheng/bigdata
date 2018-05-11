@@ -1,6 +1,4 @@
-import org.apache.WC
-
-import scala.util.control.Breaks
+package test
 
 case class Ps(name : String , age : String)
 object ScalaDemo {

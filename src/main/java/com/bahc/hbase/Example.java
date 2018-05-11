@@ -1,4 +1,4 @@
-package com.spdb.hbase;
+package com.bahc.hbase;
 
 import java.io.IOException;
 
