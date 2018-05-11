@@ -1,4 +1,4 @@
-package com.spdb.entity;
+package com.bahc.entity;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

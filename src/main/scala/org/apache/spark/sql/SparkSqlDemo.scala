@@ -1,11 +1,11 @@
-package org.apache.core
+package org.apache.org.apache.sql
 
 import java.util.Properties
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
-object SparkDemo {
+object SparkSqlDemo {
 
   case class Info(HOL_YEAR: String, HOL_MONTH: String, HOL_DAY: String)
 
@@ -22,7 +22,9 @@ object SparkDemo {
     properties.put("password", "root123")
 
     import spark.implicits._
-    val tblDF = spark.read.jdbc(jdbc, dbTable, properties)
+//    val tblDF = spark.read.jdbc(jdbc, dbTable, properties)
+
+    val tblDF = spark.read.format("jdbc").option("url","").option("dbtable","(select * from HOLIDAY_TBL) AS TMP").option("user","root").option("password","root123").load()
 
     tblDF.createOrReplaceTempView("A")
 

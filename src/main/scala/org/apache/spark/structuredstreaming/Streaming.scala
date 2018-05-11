@@ -6,7 +6,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
 import org.apache.spark.streaming.kafka010.KafkaUtils
 import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
-import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.streaming.{Milliseconds, Seconds, StreamingContext}
 
 object Streaming {
   def main(args: Array[String]): Unit = {
@@ -19,7 +19,7 @@ object Streaming {
         "enable.auto.commit" -> (false: java.lang.Boolean))
 
     val conf = new SparkConf().setAppName("streaming").setMaster("local[3]")
-    val ssc = new StreamingContext(conf,Seconds(2))
+    val ssc = new StreamingContext(conf,Milliseconds(100))
 
     val topics = Array("topicA", "topicB")
     val stream = KafkaUtils.createDirectStream[String, String](
@@ -27,8 +27,6 @@ object Streaming {
       PreferConsistent,
       Subscribe[String, String](topics, kafkaParams)
     )
-
-
 
   }
 }

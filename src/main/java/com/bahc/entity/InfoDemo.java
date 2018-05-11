@@ -1,4 +1,4 @@
-package com.spdb.entity;
+package com.bahc.entity;
 
 public class InfoDemo {
     String name;

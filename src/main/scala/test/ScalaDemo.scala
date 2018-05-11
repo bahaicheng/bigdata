@@ -1,11 +1,20 @@
+import org.apache.WC
+
 import scala.util.control.Breaks
 
 case class Ps(name : String , age : String)
 object ScalaDemo {
   def main(args: Array[String]): Unit = {
 //    prinltDemo()
-    println(1 to 10)
+    classDemo()
 
+  }
+
+  def classDemo(): Unit ={
+    var w :WC = new WC();
+    w.word = "scala"
+    w.count = 1
+    println(w)
   }
 
   def prinltDemo(): Unit ={
