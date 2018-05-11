@@ -8,12 +8,15 @@ import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks;
+import org.apache.flink.streaming.api.watermark.Watermark;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
 import org.apache.flink.streaming.util.serialization.SimpleStringSchema;
 import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 
+import javax.annotation.Nullable;
 import java.util.Properties;
 
 public class FlinkStreamingPorcessWindowsFunction {
@@ -26,8 +29,10 @@ public class FlinkStreamingPorcessWindowsFunction {
         Properties consumerProps = new Properties();
         consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.121.66:9092");
         consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "flinkconsumer2");
+        FlinkKafkaConsumer010<String> FlinkKafka010Consumer = new FlinkKafkaConsumer010<>(topicIn, new SimpleStringSchema(), consumerProps);
+        DataStream<String> stream = env.addSource(FlinkKafka010Consumer);
 
-        DataStream<String> stream = env.addSource(new FlinkKafkaConsumer010<>(topicIn, new SimpleStringSchema(), consumerProps));
+        stream.assignTimestampsAndWatermarks(new TimestampsAndWaterMark());
 
         DataStream<String> flatmap = stream.flatMap(new FlatMapFunction<String, String>() {
             @Override
@@ -51,5 +56,22 @@ public class FlinkStreamingPorcessWindowsFunction {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+}
+
+class TimestampsAndWaterMark implements AssignerWithPeriodicWatermarks<String> {
+
+    private final long maxOutOfOrderness = 3500; // 3.5 seconds
+    private long currentMaxTimestamp;
+
+    @Nullable
+    @Override
+    public Watermark getCurrentWatermark() {
+        return new Watermark(currentMaxTimestamp-maxOutOfOrderness);
+    }
+
+    @Override
+    public long extractTimestamp(String str, long l) {
+        return 0;
     }
 }
