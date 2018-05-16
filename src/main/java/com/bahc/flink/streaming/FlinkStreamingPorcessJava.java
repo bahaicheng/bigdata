@@ -1,4 +1,4 @@
-package com.bahc.flink.streaming.flink;
+package com.bahc.flink.streaming;
 
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.functions.MapFunction;
