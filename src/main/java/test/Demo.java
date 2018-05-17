@@ -6,12 +6,13 @@ import java.io.*;
 
 public class Demo {
     public static void main(String[] args) {
-        demo6();
+        demo7();
     }
 
 
     public static void demo7(){
-
+        int[] arr = new int[5];
+        System.out.println(arr.length);
     }
 
     public static void demo6(){
