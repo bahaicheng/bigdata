@@ -33,7 +33,7 @@ public class Producer extends Thread {
                 break;
             }
 //            String messageStr = "Message_" + messageNo;
-            String messageStr = "1 2 3 4 5 6 1 2 3 4 5 6";
+            String messageStr = "kafka spark flink ignite hive hbase hue sqoop hdfs yarn spark kafka flume";
             long startTime = System.currentTimeMillis();
             if (isAsync) { // Send asynchronously
                 producer.send(new ProducerRecord<>(topic,

@@ -25,7 +25,7 @@ object WatermarkTest {
     val inputMap = input.map(f=> {
       val arr = f.split("\\W+")
       val code = arr(0)
-      val time = arr(1).toLong
+      val time = System.currentTimeMillis()
       (code,time)
     })
 

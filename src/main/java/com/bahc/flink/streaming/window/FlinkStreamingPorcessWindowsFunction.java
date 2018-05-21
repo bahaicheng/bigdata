@@ -8,6 +8,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.AssignerWithPeriodicWatermarks;
 import org.apache.flink.streaming.api.watermark.Watermark;
+import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
 import org.apache.flink.streaming.util.serialization.SimpleStringSchema;
 import org.apache.flink.util.Collector;
@@ -24,9 +25,12 @@ public class FlinkStreamingPorcessWindowsFunction {
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
         Properties consumerProps = new Properties();
+
         consumerProps.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.121.66:9092");
         consumerProps.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "flinkconsumer2");
+
         FlinkKafkaConsumer010<String> FlinkKafka010Consumer = new FlinkKafkaConsumer010<>(topicIn, new SimpleStringSchema(), consumerProps);
+
         DataStream<String> stream = env.addSource(FlinkKafka010Consumer);
 
         stream.assignTimestampsAndWatermarks(new TimestampsAndWaterMark());
@@ -47,6 +51,8 @@ public class FlinkStreamingPorcessWindowsFunction {
                 return new Tuple2<String, Integer>(s, 1);
             }
         });
+
+        map.keyBy("").timeWindow(Time.seconds(3),Time.seconds(1));
 
         try {
             env.execute();
