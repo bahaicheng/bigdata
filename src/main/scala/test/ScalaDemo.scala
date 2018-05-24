@@ -8,7 +8,24 @@ case class Ps(name: String, age: String)
 
 object ScalaDemo {
   def main(args: Array[String]): Unit = {
-    println( apply( layout, 10) )
+    setTest
+  }
+
+  def setTest(): Unit ={
+    import scala.collection.mutable.Set//可变set需要引入
+    val mutableSet :Set[Int] = Set(1,2,3)
+    println(mutableSet.getClass.getName)
+    mutableSet += 6
+    mutableSet -= 2
+    mutableSet.add(8)
+    println(mutableSet)
+    val an = mutableSet.toSet
+    println(an.getClass.getName)
+  }
+
+  def listTest(): Unit ={
+    var list : List[String] = List("a","b","c")
+    println(list)
   }
 
   def apply(f :Int => String, v: Int) = f(v)

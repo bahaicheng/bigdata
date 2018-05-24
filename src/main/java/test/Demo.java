@@ -6,9 +6,14 @@ import java.io.*;
 
 public class Demo {
     public static void main(String[] args) {
-        demo7();
+        demo8();
     }
 
+    public static void demo8(){
+        ThreadDemo td = new ThreadDemo();
+        td.start();
+
+    }
 
     public static void demo7(){
         int[] arr = new int[5];
