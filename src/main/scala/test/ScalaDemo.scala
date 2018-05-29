@@ -8,7 +8,12 @@ case class Ps(name: String, age: String)
 
 object ScalaDemo {
   def main(args: Array[String]): Unit = {
-    setTest
+
+  }
+
+  def mapOption(str :Option[String]): String = str match{
+    case Some(s) => s
+    case None => "none"
   }
 
   def setTest(): Unit ={

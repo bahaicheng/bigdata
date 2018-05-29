@@ -4,31 +4,44 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
 import java.io.*;
 
-public class Demo {
-    public static void main(String[] args) {
-        demo8();
+public class Demo extends Person {
+    @Override
+    public void sleep() {
+        super.sleep();
+        System.out.println("msleep");
     }
 
-    public static void demo8(){
+    @Override
+    public void eat() {
+        super.eat();
+    }
+
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        d.eat();
+        d.sleep();
+    }
+
+    public static void demo8() {
         ThreadDemo td = new ThreadDemo();
         td.start();
 
     }
 
-    public static void demo7(){
+    public static void demo7() {
         int[] arr = new int[5];
         System.out.println(arr.length);
     }
 
-    public static void demo6(){
+    public static void demo6() {
         String filePath = "D:\\data\\linern.txt";
-        String str= null;
+        String str = null;
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
             int i = 0;
-            while((str=br.readLine())!=null) {
+            while ((str = br.readLine()) != null) {
                 i++;
-                if(str.contains("\r\n")){
+                if (str.contains("\r\n")) {
                     System.out.print(str);
                 }
 
@@ -45,15 +58,15 @@ public class Demo {
             File file = new File("D:\\data\\Hello1.txt");
             FileWriter fw = new FileWriter(file);
             String n = "abc\rd";
-            fw.write("This"+n+"!is!an!example\r\n");
-            fw.write("This"+n+"!is!an!example");
+            fw.write("This" + n + "!is!an!example\r\n");
+            fw.write("This" + n + "!is!an!example");
             fw.flush();
             fw.close();
 
             FileReader fr = new FileReader(file);
-            char [] a = new char[1024];
+            char[] a = new char[1024];
             fr.read(a); // 读取数组中的内容
-            for(char c : a) {
+            for (char c : a) {
                 System.out.println(c);
             }
             fr.close();
