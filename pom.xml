@@ -15,9 +15,23 @@
         <spring.version>5.0.5.RELEASE</spring.version>
         <hbase.version>1.3.1</hbase.version>
         <flink.version>1.3.2</flink.version>
+        <curator.version>2.9.1</curator.version>
     </properties>
 
     <dependencies>
+
+        <!-- curator start -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-client</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <!-- curator end -->
 
         <dependency>
             <groupId>org.apache.flink</groupId>
