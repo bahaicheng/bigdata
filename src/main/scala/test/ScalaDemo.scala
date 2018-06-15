@@ -1,8 +1,13 @@
 package test
 
-import shapeless.T
+import java.util.concurrent.{Callable, Future}
 
+import akka.dispatch.Futures
+
+import scala.actors.threadpool.FutureTask
+import scala.concurrent.Await
 import scala.util.control.Breaks
+
 
 case class Ps(name : String , age : String)
 
@@ -15,10 +20,11 @@ object ScalaDemo{
 
   def main(args: Array[String]): Unit = {
 
+  }
+
+  def implicitDemo(@volatile a : StringablesRecord): Unit ={
     import test.ScalaDemo.sss._
-
     val a :Int = "1"
-
   }
 
   def drop1[A](l: List[A]) = l.tail
