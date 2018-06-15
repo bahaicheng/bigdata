@@ -4,11 +4,29 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
 import java.io.*;
 
-public class Demo {
-    public static void main(String[] args) {
-        demo7();
+public class Demo extends Person {
+    @Override
+    public void sleep() {
+        super.sleep();
+        System.out.println("msleep");
     }
 
+    @Override
+    public void eat() {
+        super.eat();
+    }
+
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        d.eat();
+        d.sleep();
+    }
+
+    public static void demo8() {
+        ThreadDemo td = new ThreadDemo();
+        td.start();
+
+    }
 
     public static void demo7() {
         int[] arr = new int[5];
