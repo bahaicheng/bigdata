@@ -29,7 +29,7 @@ public class Producer extends Thread {
     public void run() {
         int messageNo = 1;
         while (true) {
-            if(messageNo == 5){
+            if(messageNo == 1000){
                 break;
             }
 //            String messageStr = "Message_" + messageNo;

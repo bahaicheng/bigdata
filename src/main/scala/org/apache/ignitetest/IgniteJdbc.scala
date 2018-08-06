@@ -1,9 +1,14 @@
 package org.apache.ignitetest
 
-import java.sql.{Connection, DriverManager, Statement}
+import java.sql.{Connection, DriverManager, ResultSet, Statement}
 
 object IgniteJdbc {
   def main(args: Array[String]): Unit = {
+
+  }
+
+
+  def createTable(): Unit ={
     val driver = "org.apache.ignite.IgniteJdbcThinDriver"
     val url = "jdbc:ignite:thin://192.168.121.66/"
 

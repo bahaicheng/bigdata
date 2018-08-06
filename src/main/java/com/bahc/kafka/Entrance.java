@@ -6,10 +6,10 @@ import com.bahc.kafka.producer.Producer;
 
 public class Entrance {
     public static void main(String[] args) {
-        Producer producer = new Producer(KafkaProperties.TOPIC,false);
-        producer.start();
+//        Producer producer = new Producer(KafkaProperties.TOPIC,false);
+//        producer.start();
 
-//        Consumer consumerThread = new Consumer(KafkaProperties.TOPIC);
-//        consumerThread.start();
+        Consumer consumerThread = new Consumer(KafkaProperties.TOPIC);
+        consumerThread.start();
     }
 }
