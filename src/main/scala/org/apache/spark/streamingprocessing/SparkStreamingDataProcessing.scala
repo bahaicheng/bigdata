@@ -1,11 +1,12 @@
 package org.apache.spark.streamingprocessing
 
 import org.apache.kafka.common.serialization.StringDeserializer
+import org.apache.spark.streaming.dstream.MapWithStateDStream
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
 import org.apache.spark.streaming.kafka010.KafkaUtils
 import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
-import org.apache.spark.streaming.{Durations, StreamingContext}
+import org.apache.spark.streaming.{Durations, State, StateSpec, StreamingContext}
 
 object SparkStreamingDataProcessing {
   def main(args: Array[String]): Unit = {
@@ -46,6 +47,19 @@ object SparkStreamingDataProcessing {
 
     ssc.checkpoint("D:\\checkpoint\\")
     ssc
+  }
+
+  val mappingFunc = (key: String, value: Option[Int], state: State[Int]) => {
+    if (state.isTimingOut()) {
+      System.out.println(key + " is timingout")
+    }
+    else {
+      val sum = state.getOption().getOrElse(0) + value.getOrElse(0)
+      val output = (key, sum)
+      //更新状态
+      state.update(sum.toInt)
+      output
+    }
   }
 
 }

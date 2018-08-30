@@ -1,7 +1,7 @@
 package org.apache.spark.streamingprocessing
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.streaming.{Seconds, StateSpec, StreamingContext}
 
 object StreamingCheckpoint {
   def main(args: Array[String]): Unit = {
@@ -19,6 +19,7 @@ object StreamingCheckpoint {
       import org.apache.spark.streaming.dstream.ConstantInputDStream
       val cis = new ConstantInputDStream(ssc, rdd)
       // Sample stream computation
+
       cis.print
 
       ssc.checkpoint(checkpointDir)
@@ -30,4 +31,5 @@ object StreamingCheckpoint {
     ssc.start()
     ssc.awaitTermination()
   }
+
 }
